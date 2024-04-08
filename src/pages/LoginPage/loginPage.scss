@@ -46,6 +46,7 @@
     }
   }
   .submit {
+    position: relative;
     margin: 0.94rem 0.3rem;
     line-height: 0.5rem;
     border-radius: 0.25rem;
@@ -54,6 +55,11 @@
     color: #fff;
     text-align: center;
     font-size: 0.16rem;
+    .message-modal-container {
+      position: absolute;
+      top: -0.3rem;
+      left: 0.6rem;
+    }
   }
   .notice {
     color: #cf1322;

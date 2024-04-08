@@ -4,19 +4,22 @@ import {
   INPUT_YOUR_PASSWORD,
   INPUT_YOUR_PHONE_NUMBER,
   LOGIN,
+  LOGIN_SUCCESS,
   PASSWORD,
   PHONE_NUMBER,
   POST_METHOD,
   REGISTER,
 } from "../../assets/ts/constants";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import useRequest from "../../utils/hooks/useRequest";
 import { ResponseDataType } from ".";
 import FullModal from "../../components/FullModal";
+import MessageModal, { MessageModalType } from "../../components/MessageModal";
 
 export default function LoginPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
+  const messageModalRef = useRef<MessageModalType>(null);
   const { isLoading, request } = useRequest<ResponseDataType>({
     method: POST_METHOD,
     url: "",
@@ -27,15 +30,28 @@ export default function LoginPage() {
   });
 
   function submit() {
+    // 未输入手机号
+    if (!phoneNumber) {
+      messageModalRef.current?.showModal(INPUT_YOUR_PHONE_NUMBER);
+      return;
+    }
+    // 未输入密码
+    if (!password) {
+      messageModalRef.current?.showModal(INPUT_YOUR_PASSWORD);
+      return;
+    }
     request()
       .then((data) => {
-        data && console.log(data.name);
+        if (data) {
+          console.log(data.name);
+          messageModalRef.current?.showModal(LOGIN_SUCCESS);
+        }
       })
       .catch((err) => {
-        alert(err);
+        // 展示messageModal
+        messageModalRef.current?.showModal(err.message);
       });
   }
-
   return (
     <div className="page login-page">
       <div className="tab">
@@ -70,6 +86,9 @@ export default function LoginPage() {
       </div>
       <div className="submit" onClick={submit}>
         {LOGIN}
+        <div className="message-modal-container">
+          <MessageModal ref={messageModalRef} />
+        </div>
       </div>
       <div className="notice">{AGREE_ON_PRIVACY}</div>
       {isLoading ? (
