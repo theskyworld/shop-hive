@@ -1,6 +1,10 @@
+import LandingPage from "./pages/LandingPage";
+
 function App() {
   return (
-    <div style={{ fontSize: ".2rem" }}>121dddddd2121ddddd2ddddddddddd</div>
+    <>
+      <LandingPage />
+    </>
   );
 }
 
