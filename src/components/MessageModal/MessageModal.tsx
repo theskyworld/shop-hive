@@ -3,14 +3,18 @@ import {
   Ref,
   useEffect,
   useImperativeHandle,
+  useRef,
   useState,
 } from "react";
 import "./MessageModal.scss";
 import { MessageModalType } from ".";
+import { createPortal } from "react-dom";
 const MessageModal = forwardRef<MessageModalType>(
   (props, ref: Ref<MessageModalType>) => {
     const [isShow, setIsShow] = useState(false);
     const [message, setMessage] = useState("");
+    const containerElemRef = useRef(document.createElement("div"));
+    const containerElem = containerElemRef.current;
     useImperativeHandle(
       ref,
       () => {
@@ -35,7 +39,28 @@ const MessageModal = forwardRef<MessageModalType>(
       };
     }, [isShow]);
 
-    return isShow ? <div className="message-modal">{message}</div> : null;
+    // 将messageModal传送到body上
+    useEffect(() => {
+      if (isShow) {
+        // 挂载
+        document.body.appendChild(containerElem);
+      } else {
+        // 卸载
+        if (containerElem.parentNode) {
+          containerElem.parentNode.removeChild(containerElem);
+        }
+      }
+      return () => {
+        if (containerElem.parentNode) {
+          containerElem.parentNode.removeChild(containerElem);
+        }
+      };
+    }, [isShow, containerElem]);
+
+    return createPortal(
+      <div className="message-modal">{message}</div>,
+      containerElem,
+    );
   },
 );
 

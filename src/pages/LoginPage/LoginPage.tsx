@@ -88,11 +88,9 @@ export default function LoginPage() {
       </div>
       <div className="submit" onClick={submit}>
         {LOGIN}
-        <div className="message-modal-container">
-          <MessageModal ref={messageModalRef} />
-        </div>
       </div>
       <div className="notice">{AGREE_ON_PRIVACY}</div>
+      <MessageModal ref={messageModalRef} />
     </div>
   );
 }
