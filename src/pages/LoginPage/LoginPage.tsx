@@ -6,10 +6,35 @@ import {
   LOGIN,
   PASSWORD,
   PHONE_NUMBER,
+  POST_METHOD,
   REGISTER,
 } from "../../assets/ts/constants";
+import { ChangeEvent, useState } from "react";
+import useRequest from "../../utils/hooks/useRequest";
+import { ResponseDataType } from ".";
 
 export default function LoginPage() {
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const { request } = useRequest<ResponseDataType>({
+    method: POST_METHOD,
+    url: "",
+    data: {
+      phoneNumber,
+      password,
+    },
+  });
+
+  function submit() {
+    request()
+      .then((data) => {
+        data && console.log(data.name);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
   return (
     <div className="page login-page">
       <div className="tab">
@@ -23,6 +48,10 @@ export default function LoginPage() {
             type="text"
             className="form-item-content"
             placeholder={INPUT_YOUR_PHONE_NUMBER}
+            value={phoneNumber}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setPhoneNumber(e.target.value)
+            }
           />
         </div>
         <div className="form-item">
@@ -31,10 +60,16 @@ export default function LoginPage() {
             type="password"
             className="form-item-content"
             placeholder={INPUT_YOUR_PASSWORD}
+            value={password}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
           />
         </div>
       </div>
-      <div className="submit">{LOGIN}</div>
+      <div className="submit" onClick={submit}>
+        {LOGIN}
+      </div>
       <div className="notice">{AGREE_ON_PRIVACY}</div>
     </div>
   );
