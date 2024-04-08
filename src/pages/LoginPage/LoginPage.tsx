@@ -4,6 +4,7 @@ import {
   INPUT_YOUR_PASSWORD,
   INPUT_YOUR_PHONE_NUMBER,
   LOGIN,
+  LOGINING,
   LOGIN_SUCCESS,
   PASSWORD,
   PHONE_NUMBER,
@@ -13,14 +14,13 @@ import {
 import { ChangeEvent, useRef, useState } from "react";
 import useRequest from "../../utils/hooks/useRequest";
 import { ResponseDataType } from ".";
-import FullModal from "../../components/FullModal";
 import MessageModal, { MessageModalType } from "../../components/MessageModal";
 
 export default function LoginPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const messageModalRef = useRef<MessageModalType>(null);
-  const { isLoading, request } = useRequest<ResponseDataType>({
+  const { request } = useRequest<ResponseDataType>({
     method: POST_METHOD,
     url: "",
     data: {
@@ -40,15 +40,17 @@ export default function LoginPage() {
       messageModalRef.current?.showModal(INPUT_YOUR_PASSWORD);
       return;
     }
+    // 展示messageModal 登录中
+    messageModalRef.current?.showModal(LOGINING);
     request()
       .then((data) => {
         if (data) {
-          console.log(data.name);
+          // 展示messageModal 登录成功
           messageModalRef.current?.showModal(LOGIN_SUCCESS);
         }
       })
       .catch((err) => {
-        // 展示messageModal
+        // 展示messageModal 登录失败
         messageModalRef.current?.showModal(err.message);
       });
   }
@@ -91,11 +93,6 @@ export default function LoginPage() {
         </div>
       </div>
       <div className="notice">{AGREE_ON_PRIVACY}</div>
-      {isLoading ? (
-        <div className="full-modal-container">
-          <FullModal />
-        </div>
-      ) : null}
     </div>
   );
 }

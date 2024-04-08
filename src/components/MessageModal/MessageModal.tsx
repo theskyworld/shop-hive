@@ -18,7 +18,7 @@ const MessageModal = forwardRef<MessageModalType>(
           // 用于在父组件中控制当前组件内容的展示和隐藏
           showModal(message: string) {
             setMessage(message);
-            setIsShow(true);
+            if (!isShow) setIsShow(true);
           },
         };
       },
