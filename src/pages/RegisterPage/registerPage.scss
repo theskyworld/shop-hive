@@ -1,4 +1,4 @@
-.login-page {
+.register-page {
   .tab {
     width: 1.14rem;
     line-height: 0.21rem;
@@ -13,10 +13,10 @@
     }
     .tab-item-left {
       float: left;
-      color: #73d13d;
     }
     .tab-item-right {
       float: right;
+      color: #73d13d;
     }
   }
   .form {
@@ -54,12 +54,5 @@
     color: #fff;
     text-align: center;
     font-size: 0.16rem;
-  }
-  .notice {
-    color: #cf1322;
-    font-size: 0.16rem;
-    line-height: 0.24rem;
-    letter-spacing: 0;
-    text-align: center;
   }
 }

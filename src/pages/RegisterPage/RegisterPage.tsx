@@ -1,39 +1,52 @@
-import "./loginPage.scss";
+import "./registerPage.scss";
 import {
-  AGREE_ON_PRIVACY,
+  CONFIRM_PASSWORD,
+  DIFFERENT_PASSWORD,
+  INPUT_YOUR_CONFIRM_PASSWORD,
   INPUT_YOUR_PASSWORD,
   INPUT_YOUR_PHONE_NUMBER,
+  INPUT_YOUR_USER_NAME,
   LOGIN,
-  LOGINING,
-  LOGIN_SUCCESS,
   LOGIN_URL,
   PASSWORD,
   PHONE_NUMBER,
   POST_METHOD,
   REGISTER,
+  REGISTERING,
+  REGISTER_SUCCESS,
   REGISTER_URL,
+  USER_NAME,
 } from "../../assets/ts/constants";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import useRequest from "../../utils/hooks/useRequest";
 import { ResponseDataType } from ".";
 import MessageModal, { MessageModalType } from "../../components/MessageModal";
 import { useNavigate } from "react-router-dom";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
   const messageModalRef = useRef<MessageModalType>(null);
   const { request } = useRequest<ResponseDataType>({
     method: POST_METHOD,
     url: "",
     data: {
+      userName,
       phoneNumber,
       password,
     },
   });
 
   function isValidInput() {
+    // 未输入用户名
+    if (!userName) {
+      messageModalRef.current?.showModal(INPUT_YOUR_USER_NAME);
+      return false;
+    }
     // 未输入手机号
     if (!phoneNumber) {
       messageModalRef.current?.showModal(INPUT_YOUR_PHONE_NUMBER);
@@ -44,27 +57,45 @@ export default function LoginPage() {
       messageModalRef.current?.showModal(INPUT_YOUR_PASSWORD);
       return false;
     }
+    // 前后密码不一致
+    if (password !== confirmPassword) {
+      messageModalRef.current?.showModal(DIFFERENT_PASSWORD);
+      return false;
+    }
     return true;
   }
-
   function submit() {
     if (!isValidInput()) return;
-    // 展示messageModal 登录中
-    messageModalRef.current?.showModal(LOGINING);
+    // 展示messageModal 注册中
+    messageModalRef.current?.showModal(REGISTERING);
     request()
       .then((data) => {
         if (data) {
-          // 展示messageModal 登录成功
-          messageModalRef.current?.showModal(LOGIN_SUCCESS);
+          // 展示messageModal 注册成功
+          messageModalRef.current?.showModal(REGISTER_SUCCESS);
+          // 注册成功
+          setIsRegisterSuccess(true);
         }
       })
       .catch((err) => {
-        // 展示messageModal 登录失败
+        // 展示messageModal 注册失败
         messageModalRef.current?.showModal(err.message);
       });
   }
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    if (isRegisterSuccess) {
+      // 2s后跳转登录页面
+      timer = setTimeout(() => {
+        navigate(LOGIN_URL);
+      }, 2000);
+    }
+    return () => {
+      timer && clearTimeout(timer);
+    };
+  }, [isRegisterSuccess]);
   return (
-    <div className="page login-page">
+    <div className="page register-page">
       <div className="tab">
         <div
           className="tab_item tab-item-left"
@@ -80,6 +111,18 @@ export default function LoginPage() {
         </div>
       </div>
       <div className="form">
+        <div className="form-item">
+          <div className="form-item-title">{USER_NAME}</div>
+          <input
+            type="text"
+            className="form-item-content"
+            placeholder={INPUT_YOUR_USER_NAME}
+            value={userName}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setUserName(e.target.value)
+            }
+          />
+        </div>
         <div className="form-item">
           <div className="form-item-title">{PHONE_NUMBER}</div>
           <input
@@ -104,11 +147,22 @@ export default function LoginPage() {
             }
           />
         </div>
+        <div className="form-item">
+          <div className="form-item-title">{CONFIRM_PASSWORD}</div>
+          <input
+            type="password"
+            className="form-item-content"
+            placeholder={INPUT_YOUR_CONFIRM_PASSWORD}
+            value={confirmPassword}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setConfirmPassword(e.target.value)
+            }
+          />
+        </div>
       </div>
       <div className="submit" onClick={submit}>
-        {LOGIN}
+        {REGISTER}
       </div>
-      <div className="notice">{AGREE_ON_PRIVACY}</div>
       <MessageModal ref={messageModalRef} />
     </div>
   );
