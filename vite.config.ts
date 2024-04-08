@@ -13,6 +13,7 @@ export default defineConfig({
     alias: {
       "@style": "src/style",
       "@assets": "src/assets",
+      "@pages": "src/pages",
     },
   },
 });
