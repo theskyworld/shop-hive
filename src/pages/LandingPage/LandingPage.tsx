@@ -6,11 +6,14 @@ import { useCallback, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_URL } from "../../assets/ts/constants";
 export default function LandingPage() {
+  // 处理页面进入动画相关的逻辑
   const pageElemRef = useRef<HTMLDivElement>(null!);
-  const navigate = useNavigate();
   useEffect(() => {
     pageElemRef.current.style.opacity = "1";
   }, []);
+
+  // 处理跳转登录页面相关的逻辑
+  const navigate = useNavigate();
   const toLogin = useCallback(() => {
     navigate(LOGIN_URL);
   }, []);
