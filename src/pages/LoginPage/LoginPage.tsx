@@ -12,11 +12,12 @@ import {
 import { ChangeEvent, useState } from "react";
 import useRequest from "../../utils/hooks/useRequest";
 import { ResponseDataType } from ".";
+import FullModal from "../../components/FullModal";
 
 export default function LoginPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const { request } = useRequest<ResponseDataType>({
+  const { isLoading, request } = useRequest<ResponseDataType>({
     method: POST_METHOD,
     url: "",
     data: {
@@ -71,6 +72,11 @@ export default function LoginPage() {
         {LOGIN}
       </div>
       <div className="notice">{AGREE_ON_PRIVACY}</div>
+      {isLoading ? (
+        <div className="full-modal-container">
+          <FullModal />
+        </div>
+      ) : null}
     </div>
   );
 }
