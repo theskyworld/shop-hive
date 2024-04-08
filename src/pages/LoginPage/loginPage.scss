@@ -1,0 +1,65 @@
+.login-page {
+  .tab {
+    width: 1.14rem;
+    line-height: 0.21rem;
+    margin: 0 auto;
+    padding: 0.5rem 0 0.77rem 0;
+    font-size: 0.18rem;
+    color: #242424;
+
+    .tab-item {
+      display: inline-block;
+      font-weight: bold;
+
+      &.active {
+        color: #73d13d;
+      }
+    }
+    .tab-item-left {
+      float: left;
+    }
+    .tab-item-right {
+      float: right;
+    }
+  }
+  .form {
+    .form-item {
+      display: flex;
+      padding: 0.16rem 0.3rem;
+      line-height: 0.24rem;
+      font-size: 0.16rem;
+      .form-item-title {
+        width: 0.48rem;
+        margin-right: 0.42rem;
+      }
+      .form-item-content {
+        display: inline-block;
+        width: 1.6rem;
+        padding: 0 0.15rem;
+        color: #242424;
+        border: none;
+        outline: none;
+        &::placeholder {
+          color: #d9d9d9;
+        }
+      }
+    }
+  }
+  .submit {
+    margin: 0.94rem 0.3rem;
+    line-height: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: #73d13d;
+    box-shadow: 0 6px 6px 0 #d9f7be;
+    color: #fff;
+    text-align: center;
+    font-size: 0.16rem;
+  }
+  .notice {
+    color: #cf1322;
+    font-size: 0.16rem;
+    line-height: 0.24rem;
+    letter-spacing: 0;
+    text-align: center;
+  }
+}
