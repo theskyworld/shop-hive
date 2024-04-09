@@ -48,5 +48,34 @@
         top: calc(50% - 7px);
       }
     }
+    .swiper-container {
+      position: relative;
+      margin : {
+        left: 0.16rem;
+        top: 0.09rem;
+      }
+      .swiper-item-pic {
+        width: 3.4rem;
+        height: 0.9rem;
+      }
+      .radius {
+        border-radius: 0.1rem;
+      }
+      .pagination {
+        position: absolute;
+        z-index: 100;
+        // 水平居中
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0.26rem;
+        color: #fff;
+        font-size: 0.12rem;
+        line-height: 0.2rem;
+        text-align: center;
+        background-color: #52c41a;
+        border-radius: 0.1rem;
+        padding: 0 0.1rem;
+      }
+    }
   }
 }
