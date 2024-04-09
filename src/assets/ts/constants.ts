@@ -1,6 +1,8 @@
 export const HOME_URL = "/";
 export const LOGIN_URL = "/login";
 export const REGISTER_URL = "/register";
+export const HOME_PAGE_URL = "/home";
+
 export const LOGIN = "登录";
 export const REGISTER = "注册";
 export const PHONE_NUMBER = "手机号";
@@ -19,3 +21,6 @@ export const UNKNOWN_ERROR = "未知错误";
 export const LOGIN_SUCCESS = "登录成功";
 export const REGISTER_SUCCESS = "注册成功，跳转登录页面...";
 export const POST_METHOD = "POST";
+
+export const YOU_GUO_GOU = "优果购(昌平店)";
+export const INPUT_YOUR_SEARCH_CONTENT = "请输入搜索内容";
