@@ -24,3 +24,7 @@ export const POST_METHOD = "POST";
 
 export const YOU_GUO_GOU = "优果购(昌平店)";
 export const INPUT_YOUR_SEARCH_CONTENT = "请输入搜索内容";
+export const NOT_SUPPORT_GEOLOCATION = "您的浏览器不支持地理位置定位";
+export const DEFAULT_LATITUDE = 30.266667;
+export const DEFAULT_LONGITUDE = 120.116667;
+export const USER_LOCATION_KEY = "user_location";
