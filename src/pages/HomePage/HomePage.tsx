@@ -1,6 +1,7 @@
 import "./homePage.scss";
 import "swiper/css";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperCom, SwiperSlide } from "swiper/react";
+import { type Swiper } from "swiper";
 import {
   DEFAULT_LATITUDE,
   DEFAULT_LONGITUDE,
@@ -106,10 +107,10 @@ export default function HomePage() {
         </div>
         {/* 注意swiper中自带swiper-wrapper类名 */}
         <div className="swiper-container">
-          <Swiper
+          <SwiperCom
             spaceBetween={0}
             slidesPerView={1}
-            onSlideChange={(e: unknown) => setPageNum(e.activeIndex + 1)}
+            onSlideChange={(e: Swiper) => setPageNum(e.activeIndex + 1)}
           >
             {bannerPicURLs.map((item) => {
               return (
@@ -122,7 +123,7 @@ export default function HomePage() {
                 </SwiperSlide>
               );
             })}
-          </Swiper>
+          </SwiperCom>
           <div className="pagination">
             <span>{pageNum}</span>/<span>{bannerPicURLs.length}</span>
           </div>
