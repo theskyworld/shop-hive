@@ -1,6 +1,10 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { useState } from "react";
 import { UNKNOWN_ERROR } from "../../assets/ts/constants";
+const axiosInstance = axios.create({
+  baseURL: "/api",
+});
+
 export default function useRequest<D>(config: Partial<AxiosRequestConfig>) {
   const [data, setData] = useState<D | null>(null);
   const [error, setError] = useState("");
@@ -12,7 +16,7 @@ export default function useRequest<D>(config: Partial<AxiosRequestConfig>) {
     setError("");
     setIsLoading(true);
     // 发送请求
-    return axios
+    return axiosInstance
       .request<D>(config)
       .then((res) => {
         setData(res.data);

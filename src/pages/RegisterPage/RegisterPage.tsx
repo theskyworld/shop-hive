@@ -33,10 +33,10 @@ export default function RegisterPage() {
   const messageModalRef = useRef<MessageModalType>(null);
   const { request } = useRequest<ResponseDataType>({
     method: POST_METHOD,
-    url: "",
+    url: "/user/register",
     data: {
-      userName,
-      phoneNumber,
+      username: userName,
+      phone: phoneNumber,
       password,
     },
   });

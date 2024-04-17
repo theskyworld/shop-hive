@@ -1,6 +1,7 @@
 import "./loginPage.scss";
 import {
   AGREE_ON_PRIVACY,
+  HOME_PAGE_URL,
   INPUT_YOUR_PASSWORD,
   INPUT_YOUR_PHONE_NUMBER,
   LOGIN,
@@ -26,9 +27,9 @@ export default function LoginPage() {
   const messageModalRef = useRef<MessageModalType>(null);
   const { request } = useRequest<ResponseDataType>({
     method: POST_METHOD,
-    url: "",
+    url: "/user/login",
     data: {
-      phoneNumber,
+      phone: phoneNumber,
       password,
     },
   });
@@ -56,6 +57,8 @@ export default function LoginPage() {
         if (data) {
           // 展示messageModal 登录成功
           messageModalRef.current?.showModal(LOGIN_SUCCESS);
+          // 跳转首页
+          navigate(HOME_PAGE_URL);
         }
       })
       .catch((err) => {
