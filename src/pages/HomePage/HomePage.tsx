@@ -289,7 +289,6 @@ export default function HomePage() {
                   pic={item.pic}
                   alt={item.alt}
                   width="1.1rem"
-                  height="2.6rem"
                 />
               </div>
             );

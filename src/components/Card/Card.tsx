@@ -7,13 +7,11 @@ export default function Card({
   price,
   alt,
   width: cardWidth,
-  height: cardHeight,
   description,
   pic,
 }: CardProps) {
   const cardStyle = useRef({
     width: cardWidth,
-    height: cardHeight,
   });
 
   return (
