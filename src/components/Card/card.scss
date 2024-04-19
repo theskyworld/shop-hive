@@ -1,0 +1,27 @@
+.card {
+  &-img {
+    width: 1rem;
+    height: 1rem;
+  }
+  &-description {
+    color: #242424;
+    font-size: 0.12rem;
+    line-height: 0.18rem;
+    white-space: normal;
+    word-break: break-all;
+    margin: 0.06rem;
+  }
+  &-price {
+    position: relative;
+    margin: 0 0.06rem;
+    color: #f81c00;
+    font-size: 0.18rem;
+    &-symbol {
+      font-size: 0.12rem;
+    }
+    &-add {
+      position: absolute;
+      right: 0.06rem;
+    }
+  }
+}

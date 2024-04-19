@@ -28,3 +28,24 @@ export const NOT_SUPPORT_GEOLOCATION = "您的浏览器不支持地理位置定�
 export const DEFAULT_LATITUDE = 30.266667;
 export const DEFAULT_LONGITUDE = 120.116667;
 export const USER_LOCATION_KEY = "user_location";
+
+// 首页_分类
+export const XXSC = "新鲜蔬菜";
+export const XRDQ = "鲜肉蛋禽";
+export const SLSG = "时令水果";
+export const RZHB = "乳制烘焙";
+export const LYSS = "粮油速食";
+export const XXLS = "休闲零食";
+export const JJBH = "家居百货";
+export const GHMZ = "个护美妆";
+export const XPCX = "新品尝鲜";
+export const MORE = "更多";
+export const XPCX_JL_DESCRIPTION = "金锣 国产猪肉 去皮猪五花肉块...";
+export const XPCX_JL_PRICE = "66.9";
+export const XPCX_JL_ALT = "金锣";
+export const XPCX_RGJ_DESCRIPTION = "肉管家 俄罗斯进口Prime级谷饲...";
+export const XPCX_RGJ_PRICE = "98";
+export const XPCX_RGJ_ALT = "肉管家";
+export const XPCX_LSG_DESCRIPTION = "乐食港 鲜活波士顿龙虾 2只装大...";
+export const XPCX_LSG_PRICE = "378";
+export const XPCX_LSG_ALT = "乐食港";
