@@ -1,5 +1,7 @@
 .home-page {
   background-color: #f5f9fa;
+  overflow-y: scroll;
+
   .banner {
     height: 2.3rem;
     background-color: #73d13d;
@@ -111,7 +113,8 @@
       }
     }
   }
-  .taste_the_new {
+  // 使用scss封装一段可以复用的样式
+  @mixin card-style {
     margin : {
       top: 0.1rem;
     }
@@ -166,6 +169,44 @@
         display: inline-block;
         margin : {
           right: 0.06rem;
+        }
+      }
+    }
+  }
+  .taste_the_new {
+    @include card-style();
+  }
+  .discount_in_limited_time {
+    @include card-style();
+  }
+  .guess_you_like {
+    @include card-style();
+    background-color: transparent;
+    &-header {
+      &-title {
+        margin-bottom: 0;
+        margin-left: -0.1rem;
+        font-weight: normal;
+      }
+    }
+    &-content {
+      margin-top: 0.01rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      &-item {
+        margin: 0.12rem {
+          top: 0;
+        }
+        border-radius: 0.08rem;
+        background-color: #fff;
+        // 修改Card组件内部的样式
+        .card {
+          border-radius: 0.1rem;
+          &-img {
+            width: auto;
+            height: auto;
+          }
         }
       }
     }

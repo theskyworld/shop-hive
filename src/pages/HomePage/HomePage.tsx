@@ -27,7 +27,29 @@ import {
   XRDQ,
   XXLS,
   XXSC,
+  XSZK,
+  XSZK_HFS_ALT,
+  XSZK_HNYT_DESCRIPTION,
+  XSZK_HNYT_PRICE,
+  XSZK_QYG_ALT,
+  XSZK_QYG_DESCRIPTION,
+  XSZK_QYG_PRICE,
   YOU_GUO_GOU,
+  XSZK_HFS_DESCRIPTION,
+  XSZK_HFS_PRICE,
+  CNYH_XZM_DESCRIPTION,
+  CNYH_XZM_PRICE,
+  CNYH_XZM_ALT,
+  CNYH_SH_DESCRIPTION,
+  CNYH_SH_ALT,
+  CNYH_SH_PRICE,
+  CNYH_BDL_DESCRIPTION,
+  CNYH_BDL_PRICE,
+  CNYH_BDL_ALT,
+  CNYH_SX_DESCRIPTION,
+  CNYH_SX_PRICE,
+  CNYH_SX_ALT,
+  CNXH,
 } from "../../assets/ts/constants";
 import locationPic from "@assets/imgs/tab_home_icon@1x.png";
 import searchPic from "@assets/imgs/home_search_icon_@1x.png";
@@ -47,12 +69,25 @@ import jinluoPic from "@assets/imgs/xpcx金锣去皮五花肉_@1x.png";
 import rouguanjiaPic from "@assets/imgs/xpcx牛肋条_@1x.png";
 import leshigangPic from "@assets/imgs/xpcx波士顿龙虾_@1x.png";
 import morePic from "@assets/imgs/home_more_icon_@1x.png";
+import discountInLimitedTimePic from "@assets/imgs/home_xszk_icon_@1x.png";
+import hainanyangtaoPic from "@assets/imgs/xszk杨桃_@1x.png";
+import qiyiguoPic from "@assets/imgs/限时折扣_四川猕猴桃_@1x.png";
+import hongfushiPic from "@assets/imgs/限时折扣_红富士苹果_@1x.png";
+import xizhoumiPic from "@assets/imgs/猜你喜欢_西州哈密瓜_@1x.png";
+import shuanghuiPic from "@assets/imgs/猜你喜欢_双汇猪小蹄_@1x.png";
+import shangxianPic from "@assets/imgs/猜你喜欢_上鲜鸡翅根_@1x.png";
+import bendaliPic from "@assets/imgs/猜你喜欢_奔达利牛排_@1x.png";
 import { useImmer } from "use-immer";
 import { MutableRefObject, useEffect, useMemo, useRef, useState } from "react";
 import MessageModal, { MessageModalType } from "../../components/MessageModal";
 import useLocalStorage from "../../utils/hooks/useLocalStorage";
 import { PositionType } from ".";
-import { CategoryDatas, TasteTheNewDatas } from "./types";
+import {
+  CategoryDatas,
+  DiscountInLimitedTimeDatas,
+  GuessYouLikeDatas,
+  TasteTheNewDatas,
+} from "./types";
 import Card from "../../components/Card";
 
 // 使用经纬度获取用户位置信息
@@ -208,6 +243,70 @@ export default function HomePage() {
     },
   ]);
 
+  // 限时折扣
+  const [discountInLimitedTimeDatas] = useState<Array<TasteTheNewDatas>>([
+    {
+      id: "1",
+      description: XSZK_HNYT_DESCRIPTION,
+      price: XSZK_HNYT_PRICE,
+      alt: XSZK_HFS_ALT,
+      pic: hainanyangtaoPic,
+    },
+    {
+      id: "2",
+      description: XSZK_QYG_DESCRIPTION,
+      price: XSZK_QYG_PRICE,
+      alt: XSZK_QYG_ALT,
+      pic: qiyiguoPic,
+    },
+    {
+      id: "3",
+      description: XSZK_HFS_DESCRIPTION,
+      price: XSZK_HFS_PRICE,
+      alt: XSZK_HFS_ALT,
+      pic: hongfushiPic,
+    },
+    {
+      id: "4",
+      description: XSZK_HFS_DESCRIPTION,
+      price: XSZK_HFS_PRICE,
+      alt: XSZK_HFS_ALT,
+      pic: hongfushiPic,
+    },
+  ]);
+
+  // 猜你喜欢
+  const [guessYouLikeDatas] = useState<Array<GuessYouLikeDatas>>([
+    {
+      id: "1",
+      description: CNYH_XZM_DESCRIPTION,
+      price: CNYH_XZM_PRICE,
+      alt: CNYH_XZM_ALT,
+      pic: xizhoumiPic,
+    },
+    {
+      id: "2",
+      description: CNYH_SH_DESCRIPTION,
+      price: CNYH_SH_PRICE,
+      alt: CNYH_SH_ALT,
+      pic: shuanghuiPic,
+    },
+    {
+      id: "3",
+      description: CNYH_BDL_DESCRIPTION,
+      price: CNYH_BDL_PRICE,
+      alt: CNYH_BDL_ALT,
+      pic: bendaliPic,
+    },
+    {
+      id: "4",
+      description: CNYH_SX_DESCRIPTION,
+      price: CNYH_SX_PRICE,
+      alt: CNYH_SX_ALT,
+      pic: shangxianPic,
+    },
+  ]);
+
   getPositionInfo(messageModalRef);
   return (
     <div className="page home-page">
@@ -289,6 +388,64 @@ export default function HomePage() {
                   pic={item.pic}
                   alt={item.alt}
                   width="1.1rem"
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 限时折扣 */}
+      <div className="discount_in_limited_time">
+        <div className="discount_in_limited_time-header">
+          <img
+            src={discountInLimitedTimePic}
+            alt={XSZK}
+            className="discount_in_limited_time-header-symbol"
+          />
+          <h3 className="discount_in_limited_time-header-title">{XSZK}</h3>
+          <div className="discount_in_limited_time-header-more">
+            <p>{MORE}</p>
+            <img src={morePic} />
+          </div>
+        </div>
+        <div className="discount_in_limited_time-content">
+          {discountInLimitedTimeDatas.map(
+            (item: DiscountInLimitedTimeDatas) => {
+              return (
+                <div
+                  className="discount_in_limited_time-content-item"
+                  key={item.id}
+                >
+                  <Card
+                    description={item.description}
+                    price={item.price}
+                    pic={item.pic}
+                    alt={item.alt}
+                    width="1.1rem"
+                  />
+                </div>
+              );
+            },
+          )}
+        </div>
+      </div>
+
+      {/* 猜你喜欢 */}
+      <div className="guess_you_like">
+        <div className="guess_you_like-header">
+          <h3 className="guess_you_like-header-title">{CNXH}</h3>
+        </div>
+        <div className="guess_you_like-content">
+          {guessYouLikeDatas.map((item: GuessYouLikeDatas) => {
+            return (
+              <div className="guess_you_like-content-item" key={item.id}>
+                <Card
+                  description={item.description}
+                  price={item.price}
+                  pic={item.pic}
+                  alt={item.alt}
+                  width="1.52rem"
                 />
               </div>
             );

@@ -17,3 +17,19 @@ export type TasteTheNewDatas = {
   alt: string;
   pic: string;
 };
+
+export type DiscountInLimitedTimeDatas = {
+  id: string;
+  description: string;
+  price: string;
+  alt: string;
+  pic: string;
+};
+
+export type GuessYouLikeDatas = {
+  id: string;
+  description: string;
+  price: string;
+  alt: string;
+  pic: string;
+};

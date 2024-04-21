@@ -38,6 +38,8 @@ export const LYSS = "粮油速食";
 export const XXLS = "休闲零食";
 export const JJBH = "家居百货";
 export const GHMZ = "个护美妆";
+
+// 新品尝鲜
 export const XPCX = "新品尝鲜";
 export const MORE = "更多";
 export const XPCX_JL_DESCRIPTION = "金锣 国产猪肉 去皮猪五花肉块...";
@@ -49,3 +51,34 @@ export const XPCX_RGJ_ALT = "肉管家";
 export const XPCX_LSG_DESCRIPTION = "乐食港 鲜活波士顿龙虾 2只装大...";
 export const XPCX_LSG_PRICE = "378";
 export const XPCX_LSG_ALT = "乐食港";
+
+// 限时折扣
+export const XSZK = "限时折扣";
+export const XSZK_HNYT_DESCRIPTION = "海南杨桃 新鲜水果 杨桃3斤礼盒装";
+export const XSZK_HNYT_PRICE = "29.8";
+export const XSZK_HNYT_ALT = "海南杨桃";
+export const XSZK_QYG_DESCRIPTION = "四川浦江金果奇异果 黄心猕猴桃...";
+export const XSZK_QYG_PRICE = "49.8";
+export const XSZK_QYG_ALT = "奇异果";
+export const XSZK_HFS_DESCRIPTION = "新鲜陕西红富士苹果 水果3斤装 新...";
+export const XSZK_HFS_PRICE = "29.8";
+export const XSZK_HFS_ALT = "红富士苹果";
+
+// 猜你喜欢
+export const CNXH = "猜你喜欢";
+export const CNYH_XZM_DESCRIPTION =
+  "西州蜜哈密瓜 甜瓜2粒装 单果1.4kg起 新鲜水果";
+export const CNYH_XZM_PRICE = "69.9";
+export const CNYH_XZM_ALT = "西州蜜哈密瓜";
+export const CNYH_SH_DESCRIPTION =
+  "双汇 国产猪小蹄膀1.5kg 冷冻猪蹄膀猪肘子生鲜...";
+export const CNYH_SH_PRICE = "79.9";
+export const CNYH_SH_ALT = "双汇";
+export const CNYH_BDL_DESCRIPTION =
+  "奔达利 谷饲100天菲力牛排 500g(5片)原切 健身...";
+export const CNYH_BDL_PRICE = "139";
+export const CNYH_BDL_ALT = "奔达利";
+export const CNYH_SX_DESCRIPTION =
+  "上鲜 白羽鸡 鸡翅根 1kg/袋 冷冻 圈养 出口日本...";
+export const CNYH_SX_PRICE = "39.8";
+export const CNYH_SX_ALT = "上鲜";
